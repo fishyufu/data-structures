@@ -11,7 +11,7 @@ var apiKey = process.env.TAMU_KEY; //API key contianed in bash as var.
 
 var meetingsData = [];
 //copy my array below
-var addresses = JSON.parse(fs.readFileSync('week3array.json'));//to read the text file of clean address
+var addresses = JSON.parse(fs.readFileSync('week3array.json'));//to read the text file of clean address, Json.parse->telling its array;
 
 // eachSeries in the async module iterates over an array and operates on each item in the array in series
 async.eachSeries(addresses, function(value, callback) {
