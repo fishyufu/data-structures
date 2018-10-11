@@ -5,7 +5,7 @@ var diaryEntries = [];
 class DiaryEntry {
   constructor(primaryKey, waterinlitter, efficiency, healthy, mood, sleepinhour) {
     this.pk = {};
-    this.pk.S = primaryKey.toString();
+    this.pk.S = primaryKey.toString(); //primary key has to be string because I select string when create table. 
     this.waterinlitter = {}; 
     this.waterinlitter.N = waterinlitter.toString();
     this.efficiency = {};
@@ -15,7 +15,7 @@ class DiaryEntry {
     this.mood = {};
     this.mood.S = mood; 
     this.sleepinhour = {};
-    this.sleepinhour.N = sleepinhour.toString();
+    this.sleepinhour.N = sleepinhour.toString(); //this transfer number to string.
   }
 }
 
@@ -30,12 +30,12 @@ console.log(diaryEntries);
     AWS.config = new AWS.Config();
     AWS.config.accessKeyId = process.env.IAM_ID;
     AWS.config.secretAccessKey = process.env.IAM_KEY;
-    AWS.config.region = "us-east-2";
+    AWS.config.region = "us-east-2"; //are in ohio
 
 var dynamodb = new AWS.DynamoDB();
 
 //Part3
-async.eachSeries(diaryEntries, function(value, callback) {
+async.eachSeries(diaryEntries, function(value, callback) { //loop and call back;
 
     var params = {};
     params.Item = value; 
@@ -43,7 +43,7 @@ async.eachSeries(diaryEntries, function(value, callback) {
 
     dynamodb.putItem(params, function (err) {
       if (err) console.log(err, err.stack); // an error occurred
-      else     console.log("Item" + value.pk.S + "inserted!");           // successful response
+      else     console.log("Item" + value.pk.S + "inserted!");           // successful response, check weather or not data is imput successfully. Specify primary key so I know which one is successful.
     });
   
 
