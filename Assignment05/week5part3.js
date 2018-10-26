@@ -3,9 +3,11 @@ var async = require('async');
 var diaryEntries = [];
 
 class DiaryEntry {
-  constructor(primaryKey, waterinlitter, efficiency, healthy, mood, sleepinhour) {
+  constructor(primaryKey, date, waterinlitter, efficiency, healthy, mood, sleepinhour) {
     this.pk = {};
     this.pk.S = primaryKey.toString(); //primary key has to be string because I select string when create table. 
+    this.date = {}; 
+    this.date.S = new Date(date).toDateString();
     this.waterinlitter = {}; 
     this.waterinlitter.N = waterinlitter.toString();
     this.efficiency = {};
@@ -19,10 +21,10 @@ class DiaryEntry {
   }
 }
 
-diaryEntries.push(new DiaryEntry("0", "1", "low", false, "feeling down", "7"));
-diaryEntries.push(new DiaryEntry("1", "2", "high", true, "happy because I finished Data-Structure homework", "4"));
-diaryEntries.push(new DiaryEntry("2", "2", "midium", false, "happy but emotional" , "7"));
-diaryEntries.push(new DiaryEntry("3", "3", "high", true, "very excited","5"));
+diaryEntries.push(new DiaryEntry("0","October 13, 2018", "1", "low", false, "feeling down", "7"));
+diaryEntries.push(new DiaryEntry("1","October 14, 2018", "2", "high", true, "happy because I finished Data-Structure homework", "4"));
+diaryEntries.push(new DiaryEntry("2","October 15, 2018", "2", "midium", false, "happy but emotional" , "7"));
+diaryEntries.push(new DiaryEntry("3","October 16, 2018", "3", "high", true, "very excited","5"));
 
 console.log(diaryEntries);
 
@@ -36,7 +38,6 @@ var dynamodb = new AWS.DynamoDB();
 
 //Part3
 async.eachSeries(diaryEntries, function(value, callback) { //loop and call back;
-
     var params = {};
     params.Item = value; 
     params.TableName = "DearDiary";
