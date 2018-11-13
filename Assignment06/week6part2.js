@@ -39,15 +39,26 @@ var dynamodb = new AWS.DynamoDB();
 //ask from here.
 var params = {
     TableName : "DearDiary",
-    KeyConditionExpression: "#pk = :pk", // the query expression
-    ExpressionAttributeNames: { // name substitution, used for reserved words in DynamoDB
-        "#pk" : "pk"
-    },
+    KeyConditionExpression: "pk = :primaryKey", // the query expression
+    //ExpressionAttributeNames: { // name substitution, used for reserved words in DynamoDB
+    //     "#pk" : "pk"
+    // },
     ExpressionAttributeValues: { // the query values
-        ":pk": {S: "1"},
+        ":primaryKey": {S: "1"},
       
     }
 };
+//    KeyConditionExpression: "#tp = :topicName and dt between :minDate and :maxDate", // the query expression
+//     ExpressionAttributeNames: { // name substitution, used for reserved words in DynamoDB
+//         "#tp" : "topic"
+//     };
+//     ExpressionAttributeValues: { // the query values
+//         ":topicName": {S: "work"},
+//         ":minDate": {N: new Date("September 1, 2018").valueOf().toString()},
+//         ":maxDate": {N: new Date("October 16, 2018").valueOf().toString()}
+//     }
+// };
+
 
 dynamodb.query(params, function(err, data) {
     if (err) {

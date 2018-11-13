@@ -122,11 +122,11 @@
   "mtlocation": "Manhattan Church of The Seventh-day Adventist",
   "group": "HAPPY, JOYOUS AND FREE",
   "wheelchair": true,
-  "day": ["", "Monday"],
-  "start": ["12:00 AM", "7:00 PM"],
-  "end": [" ", "8:00 PM"],
-  "type": ["null", "null", "C"],
-  "spinterest": ["null", "null", "Gay Men"],
+  "day": ["Monday"],
+  "start": ["7:00 PM"],
+  "end": ["8:00 PM"],
+  "type": ["C"],
+  "spinterest": [ "Gay Men"],
   "zone": 2
 }, {
   "streetAddress": "141 HENRY ST New York NY ",
