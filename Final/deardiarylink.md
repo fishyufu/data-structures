@@ -1,2 +1,2 @@
 # link to dear diary visualization:  
-![Dear Diary Visualization](https://deardiary.glitch.me/)
+[dear diary visualization](https://deardiary.glitch.me/)
