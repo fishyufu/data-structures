@@ -33,7 +33,7 @@ async.eachSeries(addressesForDb, function(value, callback) {
 
 //var thisQuery = "INSERT INTO aameetings ( mtaddress, mtgroup, mtlat, mtlon, mtlocation, mtwheelchair ,mtday, mtstart, mtend,  mttype,mtspinterest,mtzone) VALUES (E'"+value.streetAddress+"','"+value.group + "',"+value.lat+ ","+ value.long+ ",'"+ value.mtlocation+"','"+value.wheelchair+ "','{"+ value.day + "}','{" + value.start + "}','{"+ value.end +"}','{"+value.type+"}','{"+ value.spinterest+ "}',"+ value.zone+");"; //(for 1, 2, and 4,work)
 
-// var thisQuery = "SELECT mtgroup, mtzone, mtlocation, mtday, mttype FROM aameetings WHERE mtzone=1";
+var thisQuery = "SELECT mtgroup, mtzone, mtlocation, mtday, mttype FROM aameetings WHERE mtzone=1";
 
     setTimeout(callback, 1000); 
     client.query(thisQuery, (err, res) => {

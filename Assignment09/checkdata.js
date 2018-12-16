@@ -14,28 +14,45 @@ const client = new Client(db_credentials);
 client.connect();
 
 // Sample SQL statements for checking your work: 
-var thisQuery = "SELECT * FROM sensorData;"; // print all values
-var secondQuery = "SELECT COUNT (*) FROM sensorData;"; // print the number of rows
-var thirdQuery = "SELECT sensorValue, COUNT (*) FROM sensorData GROUP BY sensorValue;"; // print the number of rows for each sensorValue
+// var thisQuery = "SELECT * FROM sensorData;"; // print all values
+// var secondQuery = "SELECT COUNT (*) FROM sensorData;"; // print the number of rows
+// var thirdQuery = "SELECT sensorValue, COUNT (*) FROM sensorData GROUP BY sensorValue;"; // print the number of rows for each sensorValue
 
-client.query(thisQuery, (err, res) => {
-    if (err) {throw err}
-    else {
-    console.table(res.rows);
-    }
-});
+    var q = `SELECT EXTRACT(DAY FROM sensorTime) as sensortime,
+             MAX(sensorValue::int) max_light
+             FROM sensorData
+             GROUP BY sensortime
+             ORDER BY sensortime;`;
+             //Trying to select the largest light intensity value, and time of the day, 
+             //but I think right now it's sellecting from the whole data set, not from every day.
 
-client.query(secondQuery, (err, res) => {
-    if (err) {throw err}
-    else {
-    console.table(res.rows);
-    }
-});
 
-client.query(thirdQuery, (err, res) => {
+client.query(q, (err, res) => {
     if (err) {throw err}
     else {
     console.table(res.rows);
     }
     client.end();
 });
+             
+// client.query(thisQuery, (err, res) => {
+//     if (err) {throw err}
+//     else {
+//     console.table(res.rows);
+//     }
+// });
+
+// client.query(secondQuery, (err, res) => {
+//     if (err) {throw err}
+//     else {
+//     console.table(res.rows);
+//     }
+// });
+
+// client.query(thirdQuery, (err, res) => {
+//     if (err) {throw err}
+//     else {
+//     console.table(res.rows);
+//     }
+//     client.end();
+// });

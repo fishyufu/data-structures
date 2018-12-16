@@ -34,10 +34,25 @@ app.get('/deardiary', function(req, res) {
     // },
     ExpressionAttributeValues: { // the query values
         ":primaryKey": {S: "1"},
+        
+       
       
     }
 };
-
+    // DynamoDB (NoSQL) query
+    var params = {
+    TableName : "DearDiary",
+    KeyConditionExpression: "pk = :primaryKey", // the query expression
+    //ExpressionAttributeNames: { // name substitution, used for reserved words in DynamoDB
+    //     "#pk" : "pk"
+    // },
+    ExpressionAttributeValues: { // the query values
+        ":primaryKey": {S: "2"},
+        
+       
+      
+    }
+};
     dynamodb.query(params, function(err, data) {
         if (err) {
             console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
